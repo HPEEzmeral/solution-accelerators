@@ -46,7 +46,10 @@ with gr.Blocks(title="HPE - PCAI", theme=EzmeralTheme(), css=custom_css) as demo
         )
 
     with gr.Tab("About the App"):
-        gr.Markdown(open('INFO.md', 'r').read())
+        try: 
+            gr.Markdown(open('INFO.md', 'r').read())
+        except:
+            print("Couldn't load INFO.md")
         gr.Markdown("Visit the [GitHub](https://github.com/HPEEzmeral/solution-accelerators) for all PCAI Solution Accelerators")
 
 
