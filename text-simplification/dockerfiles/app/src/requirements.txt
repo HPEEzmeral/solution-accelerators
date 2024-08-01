@@ -1,4 +1,2 @@
 gradio==4.31.2
-langchain-core==0.2.23
-langchain-huggingface==0.0.3
-text-generation==0.7.0
+requests==2.32.3

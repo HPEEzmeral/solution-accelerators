@@ -3,27 +3,32 @@
 import logging
 import os
 import re
-
-#Langchain imports
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_huggingface import HuggingFaceEndpoint
-#-> for future from langchain_nvidia_ai_endpoints import ChatNVIDIA
+import requests
 
 #Other app imports
-from prompts import all_prompts
+from prompts import (
+    PROMPT_W_EXAMPLES,
+    PROMPT_WITHOUT_EXAMPLES,
+    PROMPT_END,
+    PROMPT_ONLY_EXAMPLES,
+    PROMPT_EXAMPLES_ONE_INSTRUCTION,
+)
 
 
-#-> remove following later
-#Config for the Mixtral Model we use in the beginning in the CTC in Madrid
-mixtral_config = {
-    "endpoint_url":"http://10.10.78.11:8081/",
-    "max_new_tokens":512,
-    "top_k":10,
-    "top_p":0.95,
-    "typical_p":0.95,
-    "temperature":0.01,
-}
+def call_api(prompt):
+    url = "http://10.10.78.13:8000/v1/completions"
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "meta-llama3-8b-instruct",
+        "prompt": prompt,
+        "max_tokens": 300,
+        "temperature": 0.5
+    }
+    response = requests.post(url, headers=headers, json=data)
+    print(response.json())
+    return response.json()['choices'][0]['text']
 
 def format_response(llm_response:str)->str:
     # it's a known issue that mixtral generates lists and/or numbered paragraphs, this removes them
@@ -33,25 +38,12 @@ def format_response(llm_response:str)->str:
 
 def execute_chain(task:str, input:dict, format:bool=True)-> str:
     """Executes a chain for a given task"""
-    provider = "CTC_Madrid"
-    logging.info(f'ModelType set. Using {provider}.')
 
-    if provider == "CTC_Madrid":
-        llm = HuggingFaceEndpoint(**mixtral_config)
-    #-> for future     elif provider == "NIM_CTC_Madrid":
-    #-> for future         llm = ChatNVIDIA(model="mistral_7b")
+    input_text = f"""Original input text: {input}"""
+    chain = PROMPT_W_EXAMPLES + input_text + PROMPT_END
+    llm_response = call_api(chain)
 
-    else:
-        raise Exception('Missing `ModelType` configuration setting. Please set the enviornment variable `ModelType`.\n export ModelType=\'CTC_Madrid\'')
-
-    #Create prompt Template https://python.langchain.com/v0.2/docs/how_to/sequence/#related
-    prompt_template = ChatPromptTemplate.from_template(
-        all_prompts[provider][task]["prompt_text"]
-    )
-    chain = prompt_template | llm | StrOutputParser()
-    llm_response = chain.invoke(input)  #["text"].strip()
-
-    logging.info(f'PromptTemplate:\n{prompt_template}\nInput:\n{input}\nOutput:\n{llm_response}')
+    logging.info(f'PromptTemplate:\n{chain}\nInput:\n{input}\nOutput:\n{llm_response}')
 
     if format:
         llm_response = format_response(llm_response)
