@@ -1,7 +1,6 @@
 # Text Simplification
 
-Write an overview for the application. Include a picture that shows how everything is integrated
-at a high level.
+ WIth this app, we propose a user-friendly web application that effortlessly converts any given English text into 'Plain English,' a simplified form of writing designed to enhance understanding for people with diverse cognitive abilities. By doing so, we aim to ensure that information is not only accessible but also inclusive.
 
 1. [What You'll Need](#what-youll-need)
 1. [Procedure](#procedure)
@@ -11,6 +10,11 @@ at a high level.
 
 ## What You'll Need
 
+For this tutorial, ensure you have:
+
+- Access to an HPE Ezmeral Unified Analytics (EzUA) cluster.
+- An API Token to pull images from NVIDIA NGC catalog. (Ensure it has access to NVIDIA NIM specifically)
+
 ## Procedure
 
 ## Troubleshooting
@@ -18,3 +22,5 @@ at a high level.
 ## Clean Up
 
 ## References
+
+1. [SimplifAI](https://github.com/saradiazdelser/SimplifAI/tree/main)
