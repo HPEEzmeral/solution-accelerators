@@ -12,7 +12,6 @@ PROMPT_W_EXAMPLES = """<|begin_of_text|><|start_header_id|>system<|end_header_id
 - Do not use confusing metaphors or complex comparisons.
 - Do not use technical terms, abbreviations and initials.
 
-
 Follow these two examples:
 Original input text: The capybara or greater capybara (Hydrochoerus hydrochaeris) is a giant cavy rodent native to South America. It is the largest living rodent and a member of the genus Hydrochoerus. The only other extant member is the lesser capybara (Hydrochoerus isthmius). Its close relatives include guinea pigs and rock cavies, and it is more distantly related to the agouti, the chinchilla, and the nutria. The capybara inhabits savannas and dense forests, and lives near bodies of water. It is a highly social species and can be found in groups as large as 100 individuals, but usually live in groups of 10–20 individuals. The capybara is hunted for its meat and hide and also for grease from its thick fatty skin.
 Simpler output text: The capybara is a big rodent.\n The capybara lives in South America.\n The capybara is the biggest rodent alive.\n The capybara lives in South America.\n Capybaras are part of the Hydrochoerus family.\n Other similar animals are: guinea pigs, rock cavies, chinchillas and otters.\n The capybara lives in savannas and rainforests.\n The capybara lives near places with water.\n The capybara is a social animal.\n The capybara lives in groups.\n Humans hunt capybaras because of their meat and their fat."
@@ -61,3 +60,8 @@ Simpler output text: The capybara is a big rodent.\n The capybara lives in South
 Original input text: The requirements for the front line of air traffic control are a poor match for AI’s capabilities. People expect air traffic to continue to be the safest complex, high-technology system ever. It achieves this standard by adhering to procedures when practical, which is something AI can do, and by adapting and exercising good judgment whenever something unplanned occurs or a new operation is implemented – a notable weakness of today’s AI. Indeed, it is when conditions are the worst – when controllers figure out how to handle aircraft with severe problems, airport crises or widespread airspace closures due to security concerns or infrastructure failures – that controllers’ contributions to safety are the greatest.
 Simpler output text: Air traffic control needs skills that Artificial Intelligence does not have.\n Air traffic systems are difficult technology systems.\n People think air traffic systems are very safe systems.\n Air traffic systems can take good decisions in unexpected situations.\n Air traffic systems adapt to changes.\n Artificial Intelligence adapts worse than air traffic systems.\n Air controllers help mantain security and safety specially when there are problems.<|eot_id|><|start_header_id|>user<|end_header_id|>
 """
+
+SIMPLE_PROMPT = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nRewrite the input text into a simpler and easier to understand ouput text. This output text is meant for people with learning and cognitive disabilities. 
+You must follow these instructions:
+- Do not use pronouns to start sentences.
+- Do not use they, she, it, he.<|eot_id|><|start_header_id|>user<|end_header_id|>"""
