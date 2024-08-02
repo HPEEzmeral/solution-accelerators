@@ -9,6 +9,6 @@ ADD src/app.py src/theme.py src/chain.py src/prompts.py src/INFO.md /workspace/
 
 ENV HOME=/workspace
 
-EXPOSE 60
+EXPOSE 7860
 
-CMD [ "python3" , "/workspace/app.py" ]
+CMD ["python3", "-u", "/workspace/app.py"]
