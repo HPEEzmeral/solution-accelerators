@@ -1,0 +1,14 @@
+app: text-simplification
+
+frontend:
+  image: <Image here>
+  containerPort: 7860
+  replicaCount: 1
+
+  
+
+service:
+  type: LoadBalancer
+  targetPort: 7860
+  port: 7860
+  protocol: TCP
