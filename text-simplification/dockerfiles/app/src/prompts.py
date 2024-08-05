@@ -2,11 +2,12 @@ PROMPT_W_EXAMPLES = """<|begin_of_text|><|start_header_id|>system<|end_header_id
 
 - Each sentence expresses only one idea.
 - Do not enumerate sentences or paragraphs.
-- Do not start sentences with pronouns
+- Do not start sentences with pronouns. Do not use "I", "you", "he" "she" "we" or "they"
 - The subject of each sentence must be explicit (full name)
-- Do not use pronouns as subjects 
-- Do not use I, you, he ,she or they.
-- Use short sentences and simple vocabulary. Be repetitive if necessary.
+- Do not use pronouns as subjects. Do not use "I", "you", "he" "she" "we" or "they"
+- Each sentence must explicitly mention the noun that performs the action.
+- Use short sentences and simple vocabulary. 
+- Be repetitive if necessary.
 - Do not use negations.
 - Do not use too many numbers or mathematical denominations. If there is no choice but to insert a number, always use digits.
 - Do not use confusing metaphors or complex comparisons.
