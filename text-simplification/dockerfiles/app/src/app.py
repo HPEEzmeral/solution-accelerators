@@ -23,10 +23,10 @@ with gr.Blocks(title="HPE - PCAI", theme=EzmeralTheme(), css=custom_css) as demo
     with gr.Tab("Simplification"):
 
         input_textbox = gr.Textbox(
-            lines=5, placeholder="Put your complicated text here..."
+            lines=5, placeholder="Put your complicated text here...", label='Complex text'
         )
         submit_butn = gr.Button("Submit", variant="primary")
-        output_textbox = gr.Textbox()
+        output_textbox = gr.Textbox(label = 'Simplified text')
 
         submit_butn.click(fn=simplify_text, inputs=input_textbox, outputs=output_textbox)
 
@@ -54,4 +54,4 @@ with gr.Blocks(title="HPE - PCAI", theme=EzmeralTheme(), css=custom_css) as demo
 
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", favicon_path="/Users/hpe/Programming/solacc/simply-app-merge/hpe_element_rgb.svg")
+    demo.launch(server_name="0.0.0.0")
