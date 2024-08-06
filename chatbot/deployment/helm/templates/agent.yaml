@@ -27,7 +27,11 @@ spec:
         - name: LLM_URL
           value: "http://{{ .Values.llm.name }}-predictor.{{ .Release.Namespace }}/v1"
         - name: EMBEDDINGS_URL
-          value: "http://{{ .Values.embeddings.name }}-{{ .Values.embeddings.modelVersion }}-predictor.{{ .Release.Namespace }}/v1"
+          value: "http://{{ .Values.embeddings.name }}-predictor.{{ .Release.Namespace }}/v1"
+        - name: CHAT_MODEL
+          value: {{ .Values.llm.modelname }}
+        - name: EMBEDDINGS_MODEL
+          value: {{ .Values.embeddings.modelname }}
         image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag }}"
         imagePullPolicy: {{ .Values.agent.pullPolicy }}
         name: {{ .Values.agent.containerName }}
