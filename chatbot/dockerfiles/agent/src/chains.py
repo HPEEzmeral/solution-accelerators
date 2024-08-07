@@ -40,8 +40,8 @@ from prompts import (
 SQL_URL = os.getenv("SQL_URL")
 LLM_URL = os.getenv("LLM_URL")
 EMBEDDINGS_URL = os.getenv("EMBEDDINGS_URL")
-CHAT_MODEL = os.getenv("CHAT_MODEL", "llama2-7b-chat")
-EMBEDDINGS_MODEL = os.getenv("EMBEDDINGS_MODEL", "NV-Embed-QA")
+CHAT_MODEL = os.getenv("CHAT_MODEL", "meta/llama3-8b-instruct")
+EMBEDDINGS_MODEL = os.getenv("EMBEDDINGS_MODEL", "nvidia/nv-embedqa-e5-v5")
 SQL_MODEL = os.getenv("SQL_MODEL", "defog/sqlcoder-7b-2")
 NUM_DOCS = os.getenv("NUM_DOCS", 5)
 

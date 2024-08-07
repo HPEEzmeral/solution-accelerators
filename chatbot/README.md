@@ -55,7 +55,63 @@ Launch a terminal window and execute the following commands:
 - `export http_proxy=<your http proxy URL>`
 - `export https_proxy=<your https proxy URL>`
 
+## Conceptual Architecture
+
 ![flow-chart](images/flowchart.png)
+
+**Path A**: Question related to structured data
+
+A1. Database Search:
+
+- The agent recognizes that the user's question pertains to structured data.
+- The agent sends a database search request to the SQL Coder Service on the vLLM server.
+
+A2. SQL Query:
+
+- The SQL Coder Service generates an SQL query and executes it on the private SQL database.
+
+A3. SQL Response:
+
+- The SQL database returns the query result to the SQL Coder Service.
+
+A4. Response:
+
+- The SQL Coder Service sends the processed response back to the agent.
+
+**Path B**: Question related to unstructured data
+
+B1. Question:
+
+- The agent recognizes that the user's question pertains to unstructured data.
+- The agent sends the question to the RAG Chain.
+
+B2. Question:
+
+- The RAG Chain sends the question to the Embeddings Inference Service.
+
+B3. Embedded Query:
+
+- The Embeddings Inference Service converts the question into an embedded query.
+
+B4. Embedded Query:
+
+- The embedded query is sent to the Vector Store to find relevant document embeddings.
+
+B5. Context:
+
+- The relevant context information is retrieved from the Vector Store and sent back to the RAG Chain.
+
+B6. Context & Question:
+
+- The RAG Chain combines the context with the original question and sends it to the LLM Inference Service.
+
+B7. Response:
+
+- The LLM Inference Service processes the combined context and question to generate a response.
+
+B8. Response:
+
+- The response is sent back to the agent.
 
 ## Clean Up
 

@@ -1,6 +1,6 @@
 name: hpe-portfolio-assistant
-version: 1.4.0
+version: 1.5.0
 apiVersion: v2
-appVersion: v1.4.0
+appVersion: v1.5.0
 description: Install the HPE portfolio assistant
 type: application

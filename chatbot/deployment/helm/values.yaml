@@ -4,7 +4,7 @@
 
 nameOverride: ""
 fullnameOverride: ""
-modelVolume: model-repository
+modelVolume: nvidia-nim-pvc
 modelRepoName: model-store
 
 frontend:
@@ -34,38 +34,28 @@ sqlCoder:
       nvidia.com/gpu: 2
 
 llm:
-  name: llama2-7b-chat-1xgpu-day0
-  modelName: Llama-2-7b-chat-hf
-  nimModelName: llama2-7b-chat
+  name: llama3-8b-instruct-1xgpu
+  modelname: meta/llama3-8b-instruct
   minReplicaCount: 1
-  modelFormat: "nvidia-nim-llm"
-  runtime: nvidia-nim-llm-24.02.day0
+  modelFormat: nvidia-nim-llama3-8b-instruct
+  runtime: nvidia-nim-llama3-8b-instruct-1.0.3
   numGPUs: 1
   resources:
     limits:
-      cpu: "8"
-      memory: 64Gi
       nvidia.com/gpu: 1
     requests:
-      cpu: "6"
-      memory: 48Gi
       nvidia.com/gpu: 1
 
 embeddings:
-  name: nv-embed-qa
-  modelVersion: 4
-  nimModelName: nv-embed-qa
-  modelFormat: nvidia-nim-embedding
-  runtime: nvidia-nim-embedding-24.02
+  name: nv-embedqa-e5-v5-1xgpu
+  modelname: nvidia/nv-embedqa-e5-v5
+  modelFormat: nvidia-nim-nv-embedqa-e5-v5
+  runtime: nvidia-nim-nv-embedqa-e5-v5-1.0.1
   minReplicaCount: 1
   resources:
     limits:
-      cpu: 8
-      memory: 128Gi
       nvidia.com/gpu: 1
     requests:
-      cpu: 6
-      memory: 64Gi
       nvidia.com/gpu: 1
 
 agent:

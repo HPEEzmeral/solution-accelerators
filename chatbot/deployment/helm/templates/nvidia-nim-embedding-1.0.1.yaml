@@ -1,0 +1,58 @@
+kind: ClusterServingRuntime
+apiVersion: serving.kserve.io/v1alpha1
+metadata:
+  name: nvidia-nim-nv-embedqa-e5-v5-1.0.1
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8002"
+    serving.kserve.io/enable-metric-aggregation: "true"
+    serving.kserve.io/enable-prometheus-scraping: "true"
+  containers:
+    - image: nvcr.io/nim/nvidia/nv-embedqa-e5-v5:1.0.1
+      name: kserve-container
+      env:
+      - name: NIM_CACHE_PATH
+        value: /mnt/models/cache
+      - name: HF_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: nvidia-nim-secrets
+            key: HF_TOKEN
+      - name: NGC_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: nvidia-nim-secrets
+            key: NGC_API_KEY
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources:
+        limits:
+          cpu: "16"
+          memory: 32Gi
+          nvidia.com/gpu: 1
+        requests:
+          cpu: "4"
+          memory: 16Gi
+          nvidia.com/gpu: 1
+      volumeMounts:
+      - mountPath: /dev/shm
+        name: dshm
+  {{- with .Values.imagePullSecrets }}
+  imagePullSecrets:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  protocolVersions:
+  - v2
+  - grpc-v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: nvidia-nim-nv-embedqa-e5-v5
+    priority: 1
+    version: 1.0.1
+  volumes:
+  - emptyDir:
+      medium: Memory
+      sizeLimit: 16Gi
+    name: dshm
