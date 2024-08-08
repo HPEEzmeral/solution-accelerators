@@ -66,3 +66,13 @@ SIMPLE_PROMPT = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n
 You must follow these instructions:
 - Do not use pronouns to start sentences.
 - Do not use they, she, it, he.<|eot_id|><|start_header_id|>user<|end_header_id|>"""
+
+
+SIMPLE_CONCEPT_PROMPT= """<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nDefine the input concept taking into account the given input context. Define it in simpler and easier to understand way. This definition is meant for people with learning and cognitive disabilities. Follow these two examples:
+ 
+Input concept: Savanna
+Simple definition: \nThe Savanna is a type of ecosystem.\nThe Savanna is found in tropical regions.\nThere is grass and some trees in the Savanna.\nSavannas typically have warm temperatures.\nSavannas have both wet and dry seasons.\nLots of animals live in the Savannas.\nAnimales like zebras and lions live in the Savanna.
+ 
+Input concept: Air Controller
+Simple definition: \nAn air controller is a person.\nAn air controller helps guide airplanes safely.\nThey give instructions to airplanes in the sky and at airports.\nAir controllers make sure: planes take off and planes land.\nThey make sure planes fly in the right direction without bumping into each other.<|eot_id|><|start_header_id|>user<|end_header_id|>
+"""
