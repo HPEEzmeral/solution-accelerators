@@ -20,3 +20,7 @@ spec:
         image: {{ .Values.frontend.image }}
         ports:
         - containerPort: {{ .Values.frontend.containerPort }}
+      #added to load the right env variables
+        env:
+          - name: LLM_URL
+            value: "http://todo-replace-this-with-function-later-predictor.{{ .Release.Namespace }}/v1"

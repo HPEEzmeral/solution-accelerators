@@ -4,29 +4,12 @@ frontend:
   image: jocowhite/text-simplification
   containerPort: 7860
   replicaCount: 1
-  #added to load the right env variables
-  env:
-    - name: LLM_URL
-      value: "http://{{ .Values.llm.name }}-predictor.{{ .Release.Namespace }}/v1"
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   targetPort: 7860
   port: 7860
   protocol: TCP
-
-llm:
-  name: llama3-8b-instruct-1xgpu
-  modelname: meta/llama3-8b-instruct
-  minReplicaCount: 1
-  modelFormat: nvidia-nim-llama3-8b-instruct
-  runtime: nvidia-nim-llama3-8b-instruct-1.0.3
-  numGPUs: 1
-  resources:
-    limits:
-      nvidia.com/gpu: 1
-    requests:
-      nvidia.com/gpu: 1
 
 #Platform related options
 ezua:
