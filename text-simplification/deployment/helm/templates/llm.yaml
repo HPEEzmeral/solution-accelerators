@@ -1,0 +1,17 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    autoscaling.knative.dev/target: "10"
+  name: {{ .Values.llm.name}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  predictor:
+    minReplicas: {{ .Values.llm.minReplicaCount }}
+    model:
+      modelFormat:
+        name: {{ .Values.llm.modelFormat }}
+      resources:
+        {{- toYaml .Values.llm.resources | nindent 8 }}
+      runtime: {{ .Values.llm.runtime }}
+      storageUri: pvc://{{ .Values.modelVolume }}/
