@@ -23,4 +23,4 @@ spec:
       #added to load the right env variables
         env:
           - name: LLM_URL
-            value: "http://todo-replace-this-with-function-later-predictor.{{ .Release.Namespace }}/v1"
+            value: "http://{{ .Values.llm.name }}-predictor.{{ .Release.Namespace }}/v1"
